@@ -1,3 +1,4 @@
+
 INSERT INTO sud (id, naziv, adresa)
 VALUES
     (nextval('sud_seq'), 'Osnovni sud Beograd', 'Nemanjina 22'),

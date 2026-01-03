@@ -2,12 +2,22 @@ package rva.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import rva.models.Predmet;
+import rva.models.Sud;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
-public interface PredmetRepository extends JpaRepository<Predmet,Integer> {
+public interface PredmetRepository extends JpaRepository<Predmet, Integer> {
 
-    List<Predmet> getByBrojPr(int brojPr);
-    List<Predmet> getByDatum(Date datum);
+    // Pretraga po broju predmeta (contains, ignore case)
+    List<Predmet> findByBrojPredmetaContainingIgnoreCase(String brojPredmeta);
+
+    // Pretraga po datumu početka
+    List<Predmet> findByDatumPocetka(LocalDate datumPocetka);
+
+    // Pretraga po sudu
+    List<Predmet> findBySud(Sud sud);
+
+    // Pretraga po statusu aktivnosti
+    List<Predmet> findByAktivan(Boolean aktivan);
 }
