@@ -1,0 +1,104 @@
+<div class="container">
+  <h3 mat-dialog-title *ngIf="flag == 1">Dodavanje predmeta</h3>
+  <h3 mat-dialog-title *ngIf="flag == 2">Ažuriranje predmeta: {{ data.brojPredmeta }}</h3>
+  <h3 mat-dialog-title *ngIf="flag == 3">Brisanje predmeta: {{ data.brojPredmeta }}</h3>
+  
+  <form class="mat-dialog-content" #formControl="ngForm">
+    <div class="form">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Broj predmeta"
+          name="brojPredmeta"
+          [disabled]="flag == 3"
+          [(ngModel)]="data.brojPredmeta"
+          required
+        />
+      </mat-form-field>
+    </div>
+    
+    <div class="form">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Opis"
+          name="opis"
+          [disabled]="flag == 3"
+          [(ngModel)]="data.opis"
+          required
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field>
+        <input
+          matInput
+          [matDatepicker]="startDate"
+          placeholder="Datum početka"
+          name="datumPocetka"
+          [disabled]="flag == 3"
+          [(ngModel)]="data.datumPocetka"
+          required
+        />
+        <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+        <mat-datepicker #startDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field>
+        <mat-select
+          placeholder="Aktivan"
+          name="aktivan"
+          [disabled]="flag == 3"
+          [(ngModel)]="data.aktivan"
+          required
+        >
+          <mat-option [value]="true">Da</mat-option>
+          <mat-option [value]="false">Ne</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field>
+        <mat-select
+          [compareWith]="compareSud"
+          placeholder="Sud"
+          name="sud"
+          [disabled]="flag == 3"
+          [(ngModel)]="data.sud"
+          required
+        >
+          <mat-option *ngFor="let sud of sudovi" [value]="sud">
+            {{ sud.naziv }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
+  
+  <div class="mat-dialog-actions">
+    <button
+      matButton
+      *ngIf="flag == 1"
+      type="submit"
+      [disabled]="!formControl.valid"
+      (click)="add()"
+    >
+      Sačuvaj
+    </button>
+    <button
+      matButton
+      *ngIf="flag == 2"
+      type="submit"
+      [disabled]="!formControl.valid"
+      (click)="update()"
+    >
+      Ažuriraj
+    </button>
+    <button matButton *ngIf="flag == 3" (click)="delete()">Obriši</button>
+    <button matButton (click)="cancel()">Otkaži</button>
+  </div>
+</div>

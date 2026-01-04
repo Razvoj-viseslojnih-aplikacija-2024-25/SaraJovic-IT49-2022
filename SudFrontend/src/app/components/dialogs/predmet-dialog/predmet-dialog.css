@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+  align-items: center;
+  padding: 32px 16px;
+  gap: 16px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+h3 {
+  text-align: center;
+  text-wrap: pretty;
+}
+
+.mat-form-field {
+  font-size: 16px;
+  width: 100%;
+}
+
+.mat-dialog-actions {
+  display: flex;
+  width: 90%;
+  justify-content: center;
+  gap: 12px;
+}
+
+.mat-dialog-actions button {
+  padding: 12px;
+  font-size: 16px;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+}
+
+.mat-dialog-actions button:first-child {
+  background-color: rgb(72, 235, 72);
+}
+
+.mat-dialog-actions button:last-child {
+  background-color: rgb(217, 87, 87);
+}
