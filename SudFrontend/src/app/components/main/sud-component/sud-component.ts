@@ -14,7 +14,6 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
   imports: [MatTableModule, MatIconModule, MatToolbarModule, MatSortModule, MatPaginatorModule],
   templateUrl: './sud-component.html',
   styleUrl: './sud-component.css',
-  standalone: true
 })
 export class SudComponent implements OnInit {
   displayedColumns = ['id', 'naziv', 'adresa', 'actions'];

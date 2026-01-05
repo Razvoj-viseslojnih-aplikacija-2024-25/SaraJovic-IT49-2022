@@ -1,0 +1,41 @@
+<div class="home-container">
+  <!-- Header -->
+  <mat-card class="welcome-card">
+    <h1>⚖️ Sudski informacioni sistem</h1>
+    <p>
+      Dobrodošli u aplikaciju za vođenje evidencije sudova, predmeta,
+      učesnika i ročišta.
+    </p>
+  </mat-card>
+
+  <!-- Navigation cards -->
+  <div class="card-grid">
+    <mat-card class="nav-card" (click)="goTo('/sudovi')">
+      <mat-icon>account_balance</mat-icon>
+      <h2>Sudovi</h2>
+      <p>Pregled i upravljanje sudovima</p>
+      <button mat-button color="primary">Otvori</button>
+    </mat-card>
+
+    <mat-card class="nav-card" (click)="goTo('/ucesnici')">
+      <mat-icon>people</mat-icon>
+      <h2>Učesnici</h2>
+      <p>Tužilac, okrivljeni, svedoci</p>
+      <button mat-button color="primary">Otvori</button>
+    </mat-card>
+
+    <mat-card class="nav-card" (click)="goTo('/predmeti')">
+      <mat-icon>folder</mat-icon>
+      <h2>Predmeti</h2>
+      <p>Sudski predmeti i statusi</p>
+      <button mat-button color="primary">Otvori</button>
+    </mat-card>
+
+    <mat-card class="nav-card" (click)="goTo('/rocista')">
+      <mat-icon>gavel</mat-icon>
+      <h2>Ročišta</h2>
+      <p>Zakazana i održana ročišta</p>
+      <button mat-button color="primary">Otvori</button>
+    </mat-card>
+  </div>
+</div>

@@ -18,7 +18,6 @@ import { PredmetDialog } from '../../dialogs/predmet-dialog/predmet-dialog';
     DatePipe],
   templateUrl: './predmet-component.html',
   styleUrl: './predmet-component.css',
-  standalone: true
 })
 export class PredmetComponent implements OnInit {
   displayedColumns = ['id', 'brojPredmeta', 'opis', 'datumPocetka', 'aktivan', 'actions'];

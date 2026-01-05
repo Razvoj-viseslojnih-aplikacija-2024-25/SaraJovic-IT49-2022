@@ -1,0 +1,103 @@
+/* Layout */
+.example-container {
+  height: 100vh;
+}
+
+/* Sidenav */
+mat-sidenav {
+  width: 280px;
+  background: linear-gradient(180deg, #2c387e, #3f51b5);
+  color: white;
+  padding: 12px;
+}
+
+/* Accordion */
+mat-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Home button */
+.home-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  margin-bottom: 12px;
+}
+
+.home-button mat-icon {
+  color: #ffeb3b;
+}
+
+/* Expansion panels */
+mat-expansion-panel {
+  background: transparent;
+  color: white;
+  box-shadow: none;
+}
+
+mat-expansion-panel-header {
+  font-weight: 500;
+}
+
+mat-panel-title,
+mat-panel-description {
+  color: white;
+}
+
+/* Navigation buttons */
+.nav-button {
+  width: 100%;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.nav-button mat-icon {
+  color: #ffeb3b;
+}
+
+/* Section buttons color accents */
+.sud-button {
+  background-color: #e3f2fd;
+}
+
+.ucesnik-button {
+  background-color: #e8f5e9;
+}
+
+.predmet-button {
+  background-color: #fffde7;
+}
+
+.rociste-button {
+  background-color: #fce4ec;
+}
+
+/* Info links */
+.info-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+}
+
+/* Main content */
+mat-sidenav-content {
+  background-color: #f4f6f9;
+  padding: 0;
+}
+
+/* Scrollbar (optional, nice touch) */
+mat-sidenav-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+mat-sidenav-content::-webkit-scrollbar-thumb {
+  background-color: #c5cae9;
+  border-radius: 4px;
+}

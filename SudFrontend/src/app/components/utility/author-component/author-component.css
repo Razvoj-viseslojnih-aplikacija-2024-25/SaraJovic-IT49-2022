@@ -1,0 +1,37 @@
+.author-container {
+  padding: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+.author-card {
+  max-width: 700px;
+  width: 100%;
+  padding: 32px;
+}
+
+.author-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.author-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  color: #3f51b5;
+}
+
+.author-header h1 {
+  margin: 0;
+  font-weight: 500;
+}
+
+.author-content p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 16px;
+}

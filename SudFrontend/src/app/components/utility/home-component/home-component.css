@@ -1,0 +1,51 @@
+.home-container {
+  padding: 32px;
+}
+
+.welcome-card {
+  margin-bottom: 32px;
+  padding: 24px;
+  background: linear-gradient(135deg, #3f51b5, #5c6bc0);
+  color: white;
+}
+
+.welcome-card h1 {
+  margin: 0 0 8px 0;
+  font-weight: 500;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.nav-card {
+  text-align: center;
+  padding: 24px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.nav-card mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  color: #3f51b5;
+  margin-bottom: 12px;
+}
+
+.nav-card h2 {
+  margin: 8px 0;
+}
+
+.nav-card p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 16px;
+}
