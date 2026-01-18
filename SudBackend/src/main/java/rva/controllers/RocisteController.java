@@ -57,14 +57,15 @@ public class RocisteController {
 
     @PostMapping("/rociste")
     public ResponseEntity<?> createRociste(@RequestBody Rociste rociste){
-        if(service.existsById(rociste.getId()))
-            return new ResponseEntity<String>(
-                    String.format("Entity with id: %s already exists", rociste.getId()),
-                    HttpStatus.CONFLICT
-            );
-        Rociste createdRociste = service.create(rociste);
-        URI uri = URI.create("/rociste/id/" + createdRociste.getId());
-        return ResponseEntity.created(uri).body(createdRociste);
+        try{
+            Rociste createdRociste = service.create(rociste);
+            URI uri = URI.create("/rociste/id/" + createdRociste.getId());
+            return ResponseEntity.created(uri).body(createdRociste);
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error creating hearing: " + e.getMessage());
+        }
+
     }
 
     @PutMapping("/rociste/{id}")
@@ -94,13 +95,13 @@ public class RocisteController {
         Optional<Predmet> predmet = predmetService.findById(foreignKey);
         if(predmet.isEmpty())
             return new ResponseEntity<String>(
-                    String.format("Predmet with id: %s doesnt exist", foreignKey),
+                    String.format("Case with id: %s doesnt exist", foreignKey),
                     HttpStatus.NOT_FOUND
             );
         List<Rociste> rocista = service.getByPredmet(predmet.get());
         if(rocista.isEmpty())
             return new ResponseEntity<String>(
-                    String.format("No hearings found for predmet with id: %s", foreignKey),
+                    String.format("No hearings found for case with id: %s", foreignKey),
                     HttpStatus.NOT_FOUND
             );
         return ResponseEntity.ok(rocista);
@@ -111,13 +112,13 @@ public class RocisteController {
         Optional<Ucesnik> ucesnik = ucesnikService.findById(foreignKey);
         if(ucesnik.isEmpty())
             return new ResponseEntity<String>(
-                    String.format("Ucesnik with id: %s doesnt exist", foreignKey),
+                    String.format("Participant with id: %s doesnt exist", foreignKey),
                     HttpStatus.NOT_FOUND
             );
         List<Rociste> rocista = service.getByUcesnik(ucesnik.get());
         if(rocista.isEmpty())
             return new ResponseEntity<String>(
-                    String.format("No hearings found for ucesnik with id: %s", foreignKey),
+                    String.format("No hearings found for participant with id: %s", foreignKey),
                     HttpStatus.NOT_FOUND
             );
         return ResponseEntity.ok(rocista);

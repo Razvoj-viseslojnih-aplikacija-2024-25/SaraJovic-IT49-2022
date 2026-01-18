@@ -24,6 +24,7 @@ public  class Sud implements  Serializable {
     private String adresa;
 
     @OneToMany(mappedBy = "sud")
+    @JsonIgnore
     private List<Predmet> predmeti;
 
     public Sud() {

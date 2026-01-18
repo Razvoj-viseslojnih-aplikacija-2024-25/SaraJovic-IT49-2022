@@ -1,6 +1,7 @@
 package rva.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -76,14 +77,16 @@ public class PredmetController {
 
     @PostMapping("/predmet")
     public ResponseEntity<?> createPredmet(@RequestBody Predmet predmet){
-        if(service.existsById(predmet.getId()))
-            return new ResponseEntity<String>(
-                    String.format("Entity with id: %s already exists", predmet.getId()),
-                    HttpStatus.CONFLICT
-            );
-        Predmet createdPredmet = service.create(predmet);
-        URI uri = URI.create("/predmet/id/" + createdPredmet.getId());
-        return ResponseEntity.created(uri).body(createdPredmet);
+        try {
+            Predmet createdPredmet = service.create(predmet);
+            URI uri = URI.create("/predmet/id/" + createdPredmet.getId());
+            return ResponseEntity.created(uri).body(createdPredmet);
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error creating case: " + e.getMessage());
+        }
+
+
     }
 
     @PutMapping("/predmet/{id}")
@@ -99,13 +102,33 @@ public class PredmetController {
 
     @DeleteMapping("/predmet/{id}")
     public ResponseEntity<?> deletePredmet(@PathVariable int id){
-        if(!service.existsById(id))
-            return new ResponseEntity<String>(
-                    String.format("Entity with id: %s doesnt exist", id),
-                    HttpStatus.NOT_FOUND
-            );
-        service.delete(id);
-        return ResponseEntity.ok(String.format("Entity with id: %s has been deleted", id));
+        try {
+            if (!service.existsById(id)) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("Case with ID " + id + "does not exist");
+            }
+            Optional<Predmet> predmetOpt = service.findById(id);
+            if (predmetOpt.isPresent()) {
+                Predmet predmet = predmetOpt.get();
+                if (predmet.getRocista() != null && !predmet.getRocista().isEmpty()) {
+                    return ResponseEntity.status(HttpStatus.CONFLICT)
+                            .body(String.format(
+                                    "Cannot delete case with case number: '%s' due to '%d' linked hearings.",
+                                            "First delete all hearings for this case.",
+                                    predmet.getBrojPredmeta(),
+                                    predmet.getRocista().size()
+                            ));
+                }
+            }
+            service.delete(id);
+            return ResponseEntity.ok("Case with ID: " + id + "deleted.");
+    }catch (DataIntegrityViolationException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("Cannot delete this case due to linked hearings.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error:  " + e.getMessage());
+        }
     }
 
     @GetMapping("/predmet/sud/{foreignKey}")
@@ -113,7 +136,7 @@ public class PredmetController {
         Optional<Sud> sud = sudService.findById(foreignKey);
         if(sud.isEmpty())
             return new ResponseEntity<String>(
-                    String.format("Sud with id: %s doesnt exist", foreignKey),
+                    String.format("Courtroom with id: %s doesnt exist", foreignKey),
                     HttpStatus.NOT_FOUND
             );
         List<Predmet> predmeti = service.getBySud(sud.get());

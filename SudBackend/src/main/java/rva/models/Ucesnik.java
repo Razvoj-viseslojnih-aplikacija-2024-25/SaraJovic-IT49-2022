@@ -1,5 +1,7 @@
 package rva.models;
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -19,6 +21,7 @@ public class Ucesnik implements Serializable{
     private String status;
 
     @OneToMany(mappedBy = "ucesnik")
+    @JsonIgnore
     private List<Rociste> rocista;
 
 
@@ -69,6 +72,10 @@ public class Ucesnik implements Serializable{
 
     public String getStatus() {
         return status;
+    }
+
+    public List<Rociste> getRocista() {
+        return rocista;
     }
 
     public void setStatus(String status) {
