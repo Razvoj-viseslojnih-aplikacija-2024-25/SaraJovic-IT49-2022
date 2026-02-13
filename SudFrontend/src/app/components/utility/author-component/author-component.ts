@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-author-component',
+  standalone: true,
   imports: [MatIconModule, MatCardModule],
   templateUrl: './author-component.html',
   styleUrl: './author-component.css'

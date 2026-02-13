@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <span class="title-center">Predmeti</span>
+  <span class="title-center">Učesnici</span>
 </mat-toolbar>
 
 <div class="container mat-elevation-z8">
@@ -11,31 +11,31 @@
       <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
     </ng-container>
 
-    <!-- Broj Predmeta Column -->
-    <ng-container matColumnDef="brojPredmeta">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Broj Predmeta</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.brojPredmeta }}</mat-cell>
+    <!-- Ime Column -->
+    <ng-container matColumnDef="ime">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Ime</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.ime }}</mat-cell>
     </ng-container>
 
-    <!-- Opis Column -->
-    <ng-container matColumnDef="opis">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Opis</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.opis }}</mat-cell>
+    <!-- Prezime Column -->
+    <ng-container matColumnDef="prezime">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Prezime</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.prezime }}</mat-cell>
     </ng-container>
 
-    <!-- Datum Pocetka Column -->
-    <ng-container matColumnDef="datumPocetka">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Datum Početka</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.datumPocetka | date: 'dd.MM.yyyy' }}</mat-cell>
+    <!-- MBR Column -->
+    <ng-container matColumnDef="mbr">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>MBR</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.mbr }}</mat-cell>
     </ng-container>
 
-    <!-- Aktivan Column -->
-    <ng-container matColumnDef="aktivan">
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <mat-chip [ngClass]="row.aktivan ? 'status-active' : 'status-inactive'">
-          <mat-icon class="chip-icon">{{ row.aktivan ? 'check_circle' : 'cancel' }}</mat-icon>
-          {{ row.aktivan ? 'Aktivan' : 'Neaktivan' }}
+        <mat-chip class="status-chip" [ngClass]="getStatusClass(row.status)">
+          <mat-icon class="chip-icon">{{ getStatusIcon(row.status) }}</mat-icon>
+          {{ row.status }}
         </mat-chip>
       </mat-cell>
     </ng-container>
@@ -45,12 +45,12 @@
       <mat-header-cell *matHeaderCellDef>Akcije</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <button mat-icon-button color="primary" 
-                (click)="openDialog(2, row.id, row.brojPredmeta, row.opis, row.datumPocetka, row.aktivan)"
+                (click)="openDialog(2, row.id, row.ime, row.prezime, row.mbr, row.status)"
                 matTooltip="Izmeni">
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-icon-button color="warn" 
-                (click)="openDialog(3, row.id, row.brojPredmeta, row.opis, row.datumPocetka, row.aktivan)"
+                (click)="openDialog(3, row.id, row.ime, row.prezime, row.mbr, row.status)"
                 matTooltip="Obriši">
           <mat-icon>delete</mat-icon>
         </button>
@@ -68,6 +68,6 @@
 <!-- Add Button -->
 <button mat-fab color="primary" class="add-button" 
         (click)="openDialog(1)"
-        matTooltip="Dodaj novi predmet">
+        matTooltip="Dodaj novog učesnika">
   <mat-icon>add</mat-icon>
 </button>

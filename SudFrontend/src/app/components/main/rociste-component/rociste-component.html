@@ -1,13 +1,8 @@
 <mat-toolbar color="primary">
-  <span class="title-center">Sudovi</span>
+  <span class="title-center">Ročišta</span>
 </mat-toolbar>
 
 <div class="container mat-elevation-z8">
-  <mat-form-field appearance="outline" class="search-field">
-    <mat-label>Pretraga</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Pretraži po ID-u ili nazivu" #input>
-    <mat-icon matSuffix>search</mat-icon>
-  </mat-form-field>
   <mat-table [dataSource]="dataSource" matSort class="mat-table">
 
     <!-- ID Column -->
@@ -16,16 +11,28 @@
       <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
     </ng-container>
 
-    <!-- Naziv Column -->
-    <ng-container matColumnDef="naziv">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Naziv</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.naziv }}</mat-cell>
+    <!-- Datum Rocista Column -->
+    <ng-container matColumnDef="datumRocista">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Datum Ročišta</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.datumRocista | date: 'dd.MM.yyyy' }}</mat-cell>
     </ng-container>
 
-    <!-- Adresa Column -->
-    <ng-container matColumnDef="adresa">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Adresa</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.adresa }}</mat-cell>
+    <!-- Sudnica Column -->
+    <ng-container matColumnDef="sudnica">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Sudnica</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.sudnica }}</mat-cell>
+    </ng-container>
+
+   <!-- Predmet Column -->
+<ng-container matColumnDef="predmet">
+  <mat-header-cell *matHeaderCellDef mat-sort-header>Predmet</mat-header-cell>
+  <mat-cell *matCellDef="let row">{{ row.predmet?.brojPredmeta || 'N/A' }}</mat-cell>
+</ng-container>
+
+    <!-- Ucesnik Column -->
+    <ng-container matColumnDef="ucesnik">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Učesnik</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.ucesnik?.ime }} {{ row.ucesnik?.prezime }}</mat-cell>
     </ng-container>
 
     <!-- Actions Column -->
@@ -33,12 +40,12 @@
       <mat-header-cell *matHeaderCellDef>Akcije</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <button mat-icon-button color="primary" 
-                (click)="openDialog(2, row.id, row.naziv, row.adresa)"
+                (click)="openDialog(2, row.id, row.datumRocista, row.sudnica, row.predmet, row.ucesnik)"
                 matTooltip="Izmeni">
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-icon-button color="warn" 
-                (click)="openDialog(3, row.id, row.naziv, row.adresa)"
+                (click)="openDialog(3, row.id, row.datumRocista, row.sudnica, row.predmet, row.ucesnik)"
                 matTooltip="Obriši">
           <mat-icon>delete</mat-icon>
         </button>
@@ -54,11 +61,8 @@
 </div>
 
 <!-- Add Button -->
-<!-- Ostatak koda ostaje isti... -->
-
-<!-- Add Button - ISPRAVLJENO -->
 <button mat-fab color="primary" class="add-button" 
         (click)="openDialog(1)"
-        matTooltip="Dodaj novi sud">
+        matTooltip="Dodaj novo ročište">
   <mat-icon>add</mat-icon>
 </button>

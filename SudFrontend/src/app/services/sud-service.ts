@@ -28,7 +28,7 @@ export class SudService {
   }
 
   public deleteSud(id: number): Observable<any> {
-    return this.httpClient.delete(`${this.baseUrl}/sud/${id}`);
+    return this.httpClient.delete(`${this.baseUrl}/sud/${id}`, { responseType: 'text' });
   }
 
   public getSudoviByNaziv(naziv: string): Observable<Sud[]> {

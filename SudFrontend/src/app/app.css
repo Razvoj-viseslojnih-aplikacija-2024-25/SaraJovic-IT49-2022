@@ -5,7 +5,7 @@
 
 /* Sidenav */
 mat-sidenav {
-  width: 280px;
+  width: 320px;
   background: linear-gradient(180deg, #2c387e, #3f51b5);
   color: white;
   padding: 12px;
@@ -30,7 +30,7 @@ mat-accordion {
 }
 
 .home-button mat-icon {
-  color: #ffeb3b;
+  color: white;
 }
 
 /* Expansion panels */
@@ -58,7 +58,7 @@ mat-panel-description {
 }
 
 .nav-button mat-icon {
-  color: #ffeb3b;
+  color: white;
 }
 
 /* Section buttons color accents */
@@ -86,13 +86,17 @@ mat-panel-description {
   color: white;
 }
 
+.info-icon {
+  color: white;
+}
+
 /* Main content */
 mat-sidenav-content {
   background-color: #f4f6f9;
   padding: 0;
 }
 
-/* Scrollbar (optional, nice touch) */
+
 mat-sidenav-content::-webkit-scrollbar {
   width: 8px;
 }

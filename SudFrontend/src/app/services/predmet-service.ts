@@ -10,7 +10,7 @@ import { Predmet } from '../models/predmet';
 export class PredmetService {
   private baseUrl = 'http://localhost:8080';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   public getAllPredmeti(): Observable<any> {
     return this.httpClient.get(`${this.baseUrl}/predmeti`);
@@ -29,7 +29,7 @@ export class PredmetService {
   }
 
   public deletePredmet(id: number): Observable<any> {
-    return this.httpClient.delete(`${this.baseUrl}/predmet/${id}`);
+    return this.httpClient.delete(`${this.baseUrl}/predmet/${id}`, { responseType: 'text' });
   }
 
   public getPredmetiByBrojPredmeta(brojPredmeta: string): Observable<any> {

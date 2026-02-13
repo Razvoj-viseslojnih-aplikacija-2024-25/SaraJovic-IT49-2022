@@ -41,7 +41,7 @@ export class PredmetDialog implements OnInit {
     private predmetService: PredmetService,
     @Inject(MAT_DIALOG_DATA) public data: Predmet,
     private sudService: SudService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.sudService.getAllSudovi().subscribe((data) => {
@@ -50,7 +50,16 @@ export class PredmetDialog implements OnInit {
   }
 
   public add(): void {
-    this.predmetService.createPredmet(this.data).subscribe({
+    // Format date specifically for backend (yyyy-MM-dd)
+    const formattedData = { ...this.data };
+    if (this.data.datumPocetka) {
+      const date = new Date(this.data.datumPocetka);
+      const offset = date.getTimezoneOffset();
+      const localDate = new Date(date.getTime() - (offset * 60 * 1000));
+      (formattedData as any).datumPocetka = localDate.toISOString().split('T')[0];
+    }
+
+    this.predmetService.createPredmet(formattedData).subscribe({
       next: (data) => {
         this.dialogRef.close(1);
         this.snackBar.open(
@@ -71,7 +80,16 @@ export class PredmetDialog implements OnInit {
   }
 
   public update(): void {
-    this.predmetService.updatePredmet(this.data.id, this.data).subscribe({
+    // Format date specifically for backend (yyyy-MM-dd)
+    const formattedData = { ...this.data };
+    if (this.data.datumPocetka) {
+      const date = new Date(this.data.datumPocetka);
+      const offset = date.getTimezoneOffset();
+      const localDate = new Date(date.getTime() - (offset * 60 * 1000));
+      (formattedData as any).datumPocetka = localDate.toISOString().split('T')[0];
+    }
+
+    this.predmetService.updatePredmet(this.data.id, formattedData).subscribe({
       next: (data) => {
         this.dialogRef.close(1);
         this.snackBar.open(

@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet,
     CommonModule,
     RouterOutlet,
@@ -21,7 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     MatButtonModule],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App {
   protected readonly title = signal('SudFrontend');

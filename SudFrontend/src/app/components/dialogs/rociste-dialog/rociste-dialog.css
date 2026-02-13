@@ -1,0 +1,77 @@
+/* Container za ceo dijalog */
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+  align-items: center;
+  padding: 32px 16px;
+  gap: 16px;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+/* Naslov dijaloga */
+h3 {
+  text-align: center;
+  word-wrap: break-word;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+/* Forma unutar dijaloga */
+form.mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+/* Svaki input/select wrapper */
+.form {
+  width: 100%;
+}
+
+/* Mat form field stilovi */
+.mat-form-field {
+  width: 100%;
+  font-size: 16px;
+}
+
+/* Akcioni dugmići */
+.mat-dialog-actions {
+  display: flex;
+  width: 90%;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+/* Dugmići */
+.mat-dialog-actions button {
+  padding: 12px;
+  font-size: 16px;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Sačuvaj / Dodaj (prvi dugmić) */
+.mat-dialog-actions button:first-child {
+  background-color: rgb(72, 235, 72);
+}
+
+.mat-dialog-actions button:first-child:hover {
+  background-color: rgb(50, 200, 50);
+}
+
+/* Otkaži / Brisanje (poslednji dugmić) */
+.mat-dialog-actions button:last-child {
+  background-color: rgb(217, 87, 87);
+}
+
+.mat-dialog-actions button:last-child:hover {
+  background-color: rgb(180, 60, 60);
+}
