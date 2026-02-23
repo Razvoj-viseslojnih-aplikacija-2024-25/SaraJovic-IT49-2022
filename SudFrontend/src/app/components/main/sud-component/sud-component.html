@@ -1,13 +1,10 @@
+
 <mat-toolbar color="primary">
   <span class="title-center">Sudovi</span>
 </mat-toolbar>
 
 <div class="container mat-elevation-z8">
-  <mat-form-field appearance="outline" class="search-field">
-    <mat-label>Pretraga</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Pretraži po ID-u ili nazivu" #input>
-    <mat-icon matSuffix>search</mat-icon>
-  </mat-form-field>
+
   <mat-table [dataSource]="dataSource" matSort class="mat-table">
 
     <!-- ID Column -->

@@ -12,9 +12,9 @@ VALUES
 
 INSERT INTO predmet (id, broj_predmeta, opis, datum_pocetka, aktivan, sud_id)
 VALUES
-    (nextval('predmet_seq'), 'P-101/2024', 'Krivični postupak', DATE '2024-01-15', TRUE, 1),
-    (nextval('predmet_seq'), 'P-202/2024', 'Parnični postupak', DATE '2024-02-10', TRUE, 1),
-    (nextval('predmet_seq'), 'P-303/2023', 'Privredni spor', DATE '2023-11-05', FALSE, 2);
+    (nextval('predmet_seq'), 'P-101-2024', 'Krivični postupak', DATE '2024-01-15', TRUE, 1),
+    (nextval('predmet_seq'), 'P-202-2024', 'Parnični postupak', DATE '2024-02-10', TRUE, 1),
+    (nextval('predmet_seq'), 'P-303-2023', 'Privredni spor', DATE '2023-11-05', FALSE, 2);
 
 INSERT INTO rociste (id, datum_rocista, sudnica, predmet_id, ucesnik_id)
 VALUES

@@ -40,6 +40,10 @@ export class PredmetService {
     return this.httpClient.get(`${this.baseUrl}/predmet/aktivan/${aktivan}`);
   }
 
+  public getPredmetiByDatum(datum: string): Observable<any> {
+    return this.httpClient.get(`${this.baseUrl}/predmet/datum/${datum}`);
+  }
+
   public getPredmetiBySud(sudId: number): Observable<any> {
     return this.httpClient.get(`${this.baseUrl}/predmet/sud/${sudId}`);
   }

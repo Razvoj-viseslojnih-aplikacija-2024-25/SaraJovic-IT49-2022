@@ -40,7 +40,7 @@ export class UcesnikComponent implements OnInit {
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
 
-  constructor(private ucesnikService: UcesnikService, private dialog: MatDialog) {}
+  constructor(private ucesnikService: UcesnikService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loadData();
@@ -57,6 +57,45 @@ export class UcesnikComponent implements OnInit {
     });
   }
 
+  public searchById(id: number): void {
+    this.ucesnikService.getUcesnikById(id).subscribe({
+      next: (data) => {
+        this.dataSource = new MatTableDataSource<Ucesnik>([data]);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      },
+      error: (error) => {
+        console.log(error.message);
+      },
+    });
+  }
+
+  public searchByMbr(mbr: string): void {
+    this.ucesnikService.getUcesniciByMbr(mbr).subscribe({
+      next: (data) => {
+        this.dataSource = new MatTableDataSource<Ucesnik>(data);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      },
+      error: (error) => {
+        console.log(error.message);
+      },
+    });
+  }
+
+  public searchByStatus(status: string): void {
+    this.ucesnikService.getUcesniciByStatus(status).subscribe({
+      next: (data) => {
+        this.dataSource = new MatTableDataSource<Ucesnik>(data);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      },
+      error: (error) => {
+        console.log(error.message);
+      },
+    });
+  }
+
   openDialog(flag: number, id?: number, ime?: string, prezime?: string, mbr?: string, status?: string): void {
     const ref = this.dialog.open(UcesnikDialog, {
       data: { id, ime, prezime, mbr, status }
@@ -70,22 +109,22 @@ export class UcesnikComponent implements OnInit {
   }
 
   getStatusIcon(status: string): string {
-    switch(status?.toUpperCase()) {
-      case 'TUŽILAC': 
+    switch (status?.toUpperCase()) {
+      case 'TUŽILAC':
       case 'TUZILAC':
         return 'gavel';
-      case 'OKRIVLJENI': 
+      case 'OKRIVLJENI':
         return 'person_off';
       case 'SVEDOK':
       case 'SVEDEOK':
         return 'record_voice_over';
-      default: 
+      default:
         return 'help';
     }
   }
 
   getStatusClass(status: string): string {
-    switch(status?.toLowerCase()) {
+    switch (status?.toLowerCase()) {
       case 'tužilac':
       case 'tuzilac':
         return 'tuzilac';
