@@ -41,6 +41,11 @@
       </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="sud">
+  <mat-header-cell *matHeaderCellDef mat-sort-header>Sud</mat-header-cell>
+  <mat-cell *matCellDef="let row">{{ row.sud?.naziv || 'N/A' }}</mat-cell>
+</ng-container>
+
     <!-- Actions Column -->
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>Akcije</mat-header-cell>

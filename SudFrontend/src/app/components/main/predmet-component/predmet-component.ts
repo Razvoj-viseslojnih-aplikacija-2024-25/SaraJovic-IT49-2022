@@ -34,7 +34,7 @@ import { PredmetDialog } from '../../dialogs/predmet-dialog/predmet-dialog';
   styleUrl: './predmet-component.css',
 })
 export class PredmetComponent implements OnInit {
-  displayedColumns = ['id', 'brojPredmeta', 'opis', 'datumPocetka', 'aktivan', 'actions'];
+  displayedColumns = ['id', 'brojPredmeta', 'opis', 'datumPocetka', 'aktivan', 'sud', 'actions'];
   dataSource!: MatTableDataSource<Predmet>;
 
   @ViewChild(MatSort, { static: false }) sort!: MatSort;

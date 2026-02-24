@@ -19,6 +19,6 @@ VALUES
 INSERT INTO rociste (id, datum_rocista, sudnica, predmet_id, ucesnik_id)
 VALUES
     (nextval('rociste_seq'), DATE '2024-03-01', 'Sudnica 1', 1, 1),
-    (nextval('rociste_seq'), DATE '2024-03-15', 'Sudnica 2', 1, 2),
+    (nextval('rociste_seq'), DATE '2024-03-15', 'Sudnica 2', 1, 1),
     (nextval('rociste_seq'), DATE '2024-04-10', 'Sudnica 3', 2, 3),
     (nextval('rociste_seq'), DATE '2024-05-20', 'Sudnica 1', 3, 1);
